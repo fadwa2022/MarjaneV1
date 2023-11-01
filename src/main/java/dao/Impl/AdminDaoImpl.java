@@ -1,37 +1,30 @@
-package dao;
+package dao.Impl;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
-
-import org.hibernate.Session;
+import Entity.AdminEntity;
+import dao.AbstractDao;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
-import Entity.AdminEntity;
-
-
 @Repository
-public class AdminDaoImpl implements AdminDao {
-
+public class AdminDaoImpl implements AbstractDao <AdminEntity> {
     @Autowired
     private SessionFactory sessionFactory;
-
     @Override
-    public long save(AdminEntity admin) {
+    public int save(AdminEntity admin) {
+
+        System.out.println(admin.getEmail());
         sessionFactory.getCurrentSession().save(admin);
         return admin.getId();
+
     }
 
     @Override
-    public AdminEntity get(long id) {
+    public AdminEntity get(int id) {
         return sessionFactory.getCurrentSession().get(AdminEntity.class, id);
     }
 
@@ -42,15 +35,12 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public void update(long id, AdminEntity admin) {
-
+    public void update(int id, AdminEntity entity) {
 
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) {
 
     }
-
-
 }

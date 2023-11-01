@@ -1,32 +1,28 @@
-package service;
+package service.Impl;
 
 import Entity.AdminEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import dao.AdminDao;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.Marshaller;
+import dao.AbstractDao;
+import service.AbstractService;
 
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
-public class AdminServiceImp implements AdminService{
-
+@Transactional
+public class AdminServiceImp implements AbstractService <AdminEntity>  {
     @Autowired
-    private AdminDao adminDao;
+    private AbstractDao adminDao;
 
-    @Transactional
     @Override
-    public long save(AdminEntity admin) {
+    public int save(AdminEntity admin) {
+
         return adminDao.save(admin);
     }
 
     @Override
-    public AdminEntity get(long id) {
+    public AdminEntity get(int id) {
         return adminDao.get(id);
     }
 
@@ -34,15 +30,16 @@ public class AdminServiceImp implements AdminService{
     public List<AdminEntity> list() {
         return adminDao.list();
     }
-    @Transactional
+
     @Override
-    public void update(long id, AdminEntity admin) {
+    public void update(int id, AdminEntity admin) {
         adminDao.update(id, admin);
+
     }
 
-    @Transactional
     @Override
-    public void delete(long id) {
+    public void delete(int id) {
         adminDao.delete(id);
+
     }
 }

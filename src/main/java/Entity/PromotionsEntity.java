@@ -1,34 +1,27 @@
 package Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-
+@Table(name = "promotions", schema = "public", catalog = "mrjn")
 public class PromotionsEntity {
+    @Basic
+    @Column(name = "status")
+    private String status;
+    @Basic
+    @Column(name = "pourcentage")
+    private Integer pourcentage;
+    @Basic
+    @Column(name = "comment")
+    private String comment;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-
+    @Column(name = "id")
     private int id;
-
-    private String status;
-
-    private Integer pourcentage;
-
+    @Basic
+    @Column(name = "idproduct")
     private Integer idproduct;
-
-    private String comment;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getStatus() {
         return status;
@@ -46,14 +39,6 @@ public class PromotionsEntity {
         this.pourcentage = pourcentage;
     }
 
-    public Integer getIdproduct() {
-        return idproduct;
-    }
-
-    public void setIdproduct(Integer idproduct) {
-        this.idproduct = idproduct;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -62,29 +47,32 @@ public class PromotionsEntity {
         this.comment = comment;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Integer getIdproduct() {
+        return idproduct;
+    }
+
+    public void setIdproduct(Integer idproduct) {
+        this.idproduct = idproduct;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PromotionsEntity that = (PromotionsEntity) o;
-
-        if (id != that.id) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (pourcentage != null ? !pourcentage.equals(that.pourcentage) : that.pourcentage != null) return false;
-        if (idproduct != null ? !idproduct.equals(that.idproduct) : that.idproduct != null) return false;
-        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
-
-        return true;
+        return id == that.id && Objects.equals(status, that.status) && Objects.equals(pourcentage, that.pourcentage) && Objects.equals(comment, that.comment) && Objects.equals(idproduct, that.idproduct);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (pourcentage != null ? pourcentage.hashCode() : 0);
-        result = 31 * result + (idproduct != null ? idproduct.hashCode() : 0);
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        return result;
+        return Objects.hash(status, pourcentage, comment, id, idproduct);
     }
 }

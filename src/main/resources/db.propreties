@@ -1,8 +1,8 @@
 	# jdbc properties
 	jdbc.driver=org.postgresql.Driver
-	jdbc.url=jdbc:postgresql://localhost:5432/bookdb
+	jdbc.url=jdbc:postgresql://localhost:5432/mrjn
 	jdbc.user=postgres
-	jdbc.password=0000
+	jdbc.password=Fadwa1234
 	
 	# Hibernate properties
 	hibernate.show_sql=true

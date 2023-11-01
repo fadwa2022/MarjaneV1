@@ -1,38 +1,30 @@
 package Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-
+@Table(name = "produits", schema = "public", catalog = "mrjn")
 public class ProduitsEntity {
+    @Basic
+    @Column(name = "idcategorie")
+    private int idcategorie;
+    @Basic
+    @Column(name = "name")
+    private String name;
+    @Basic
+    @Column(name = "price")
+    private Integer price;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-
+    @Column(name = "id")
     private int id;
 
-    private Integer idcategorie;
-
-    private String name;
-
-    private Integer price;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Integer getIdcategorie() {
+    public int getIdcategorie() {
         return idcategorie;
     }
 
-    public void setIdcategorie(Integer idcategorie) {
+    public void setIdcategorie(int idcategorie) {
         this.idcategorie = idcategorie;
     }
 
@@ -52,27 +44,24 @@ public class ProduitsEntity {
         this.price = price;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ProduitsEntity that = (ProduitsEntity) o;
-
-        if (id != that.id) return false;
-        if (idcategorie != null ? !idcategorie.equals(that.idcategorie) : that.idcategorie != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
-
-        return true;
+        return idcategorie == that.idcategorie && id == that.id && Objects.equals(name, that.name) && Objects.equals(price, that.price);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (idcategorie != null ? idcategorie.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        return result;
+        return Objects.hash(idcategorie, name, price, id);
     }
 }
