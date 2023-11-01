@@ -1,16 +1,19 @@
 package Entity;
 
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 @Entity
-@Table(name = "categories", schema = "public", catalog = "mrjn")
+
 public class CategoriesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+
     private int id;
-    @Basic
-    @Column(name = "nom")
+
     private String nom;
 
     public int getId() {

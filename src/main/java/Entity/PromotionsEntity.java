@@ -1,25 +1,25 @@
 package Entity;
 
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 @Entity
-@Table(name = "promotions", schema = "public", catalog = "mrjn")
+
 public class PromotionsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+
     private int id;
-    @Basic
-    @Column(name = "status")
+
     private String status;
-    @Basic
-    @Column(name = "pourcentage")
+
     private Integer pourcentage;
-    @Basic
-    @Column(name = "idproduct")
+
     private Integer idproduct;
-    @Basic
-    @Column(name = "comment")
+
     private String comment;
 
     public int getId() {

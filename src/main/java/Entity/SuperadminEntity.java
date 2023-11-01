@@ -1,22 +1,21 @@
 package Entity;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "superadmin", schema = "public", catalog = "mrjn")
+
 public class SuperadminEntity {
-    @Basic
-    @Column(name = "email")
+
     private String email;
-    @Basic
-    @Column(name = "password")
+
     private String password;
-    @Basic
-    @Column(name = "Fullname")
+
     private String fullname;
+    @Id
+    private Long id;
 
     public String getEmail() {
         return email;
@@ -62,5 +61,13 @@ public class SuperadminEntity {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (fullname != null ? fullname.hashCode() : 0);
         return result;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

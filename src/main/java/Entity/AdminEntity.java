@@ -1,25 +1,24 @@
 package Entity;
 
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "admin", schema = "public", catalog = "mrjn")
+
 public class AdminEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+
     private int id;
-    @Basic
-    @Column(name = "email")
+
     private String email;
-    @Basic
-    @Column(name = "password")
+
     private String password;
-    @Basic
-    @Column(name = "Fullname")
+
     private String fullname;
-    @Basic
-    @Column(name = "Ville")
+
     private String ville;
 
     public int getId() {
