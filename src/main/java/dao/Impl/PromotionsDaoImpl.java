@@ -50,25 +50,38 @@ public class PromotionsDaoImpl implements AbstractDao<PromotionsEntity>, Promoti
 
     }
     @Override
-     public List<PromotionsEntity> getPromotionByProductId(int productId) {
+     public PromotionsEntity getPromotionByProductId(int productId) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM PromotionsEntity p WHERE p.idproduct = :productId";
-        Query<PromotionsEntity> query = session.createQuery(hql, PromotionsEntity.class);
+
+        Query query = session.createQuery("FROM PromotionsEntity WHERE idproduct = :productId");
         query.setParameter("productId", productId);
-        return query.list();
+
+        PromotionsEntity promotion = (PromotionsEntity) query.uniqueResult();
+
+        return promotion;
     }
     @Override
-    public List<PromotionsEntity> getPromotionByCategoryId(int categoryId) {
+    public PromotionsEntity getPromotionByCategoryId(int categoryId) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM PromotionsEntity p WHERE p.idcategory = :categoryId";
-        Query<PromotionsEntity> query = session.createQuery(hql, PromotionsEntity.class);
+
+        Query query = session.createQuery("FROM PromotionsEntity WHERE idcategory = :categoryId");
         query.setParameter("categoryId", categoryId);
-        return query.list();
+
+        PromotionsEntity promotion = (PromotionsEntity) query.uniqueResult();
+
+        return promotion;
     }
     @Override
-    public List<PromotionsEntity> getPromotionsByCategory() {
+    public List<PromotionsEntity> getPromotionsCategory() {
         Session session = sessionFactory.getCurrentSession();
         String hql = "FROM PromotionsEntity p WHERE p.idcategory IS NOT NULL";
+        Query<PromotionsEntity> query = session.createQuery(hql, PromotionsEntity.class);
+        return query.list();
+    }
+    @Override
+    public List<PromotionsEntity> getPromotionsProduct() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM PromotionsEntity p WHERE p.idproduct IS NOT NULL";
         Query<PromotionsEntity> query = session.createQuery(hql, PromotionsEntity.class);
         return query.list();
     }

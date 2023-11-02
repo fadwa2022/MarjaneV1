@@ -29,8 +29,32 @@ public class PromotionsServiceImp implements AbstractService<PromotionsEntity>, 
 
         @Override
         public int save(PromotionsEntity promotion) {
-            return promotionDao.save(promotion);
-                                    }
+            PromotionsEntity existingPromotionByProduct = null;
+            if (promotion.getIdproduct() != null) {
+                existingPromotionByProduct = getPromotionByProductId(promotion.getIdproduct());
+            }
+
+            PromotionsEntity existingPromotionByCategory = null;
+            if (promotion.getIdcategory() != null) {
+                existingPromotionByCategory = getPromotionByCategoryId(promotion.getIdcategory());
+            }
+
+            if (existingPromotionByProduct != null || existingPromotionByCategory != null) {
+
+                PromotionsEntity existingPromotion = (existingPromotionByProduct != null) ? existingPromotionByProduct : existingPromotionByCategory;
+
+                existingPromotion.setStatus(promotion.getStatus());
+                existingPromotion.setComment(promotion.getComment());
+                existingPromotion.setPourcentage(promotion.getPourcentage());
+
+                update(existingPromotion.getId(), existingPromotion);
+
+                return existingPromotion.getId();
+            } else {
+                return promotionDao.save(promotion);
+            }
+
+        }
 
         @Override
         public PromotionsEntity get(int id) {
@@ -74,14 +98,21 @@ public class PromotionsServiceImp implements AbstractService<PromotionsEntity>, 
 
         @Override
 
-      public List<PromotionsEntity> getPromotionByProductId(int productId) {
+      public PromotionsEntity getPromotionByProductId(int productId) {
             return promotionDao1.getPromotionByProductId(productId);
         }
-      public List<PromotionsEntity> getPromotionByCategoryId(int categoryId) {
+        @Override
+      public PromotionsEntity getPromotionByCategoryId(int categoryId) {
             return promotionDao1.getPromotionByCategoryId(categoryId);
         }
-      public List<PromotionsEntity> getPromotionsByCategory() {
-            return promotionDao1.getPromotionsByCategory();
+    @Override
+      public List<PromotionsEntity> getPromotionsCategory() {
+            return promotionDao1.getPromotionsCategory();
         }
+     @Override
+        public List<PromotionsEntity> getPromotionsProduct() {
+            return promotionDao1.getPromotionsProduct();
+        }
+
     }
 

@@ -52,14 +52,23 @@ public class PromotionController  {
         return ResponseEntity.ok().body("promotion has been deleted successfully.");
     }
     @GetMapping("/byProductId/{productId}")
-    public ResponseEntity<List<PromotionsEntity>> getPromotionByProductId(@PathVariable("productId") int productId) {
-        List<PromotionsEntity> promotions = promotionService1.getPromotionByProductId(productId);
-        return ResponseEntity.ok().body(promotions);
+    public ResponseEntity <PromotionsEntity> getPromotionByProductId(@PathVariable("productId") int productId) {
+        PromotionsEntity promotion = promotionService1.getPromotionByProductId(productId);
+        return ResponseEntity.ok().body(promotion);
     }
     @GetMapping("/byCategoryId/{categoryId}")
-    public ResponseEntity<List<PromotionsEntity>> getPromotionByCategoryId(@PathVariable("categoryId") int categoryId) {
-        List<PromotionsEntity> promotions = promotionService1.getPromotionByCategoryId(categoryId);
+    public ResponseEntity <PromotionsEntity> getPromotionByCategoryId(@PathVariable("categoryId") int categoryId) {
+        PromotionsEntity promotion = promotionService1.getPromotionByCategoryId(categoryId);
+        return ResponseEntity.ok().body(promotion);
+    }
+    @GetMapping("/Category")
+    public ResponseEntity<List<PromotionsEntity>> getPromotionCategory( ){
+        List<PromotionsEntity> promotions = promotionService1.getPromotionsCategory();
         return ResponseEntity.ok().body(promotions);
     }
-
+    @GetMapping("/Product")
+    public ResponseEntity<List<PromotionsEntity>> getPromotionProduct( ){
+        List<PromotionsEntity> promotions = promotionService1.getPromotionsProduct();
+        return ResponseEntity.ok().body(promotions);
+    }
 }
