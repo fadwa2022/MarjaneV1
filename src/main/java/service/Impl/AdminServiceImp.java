@@ -2,6 +2,7 @@ package service.Impl;
 
 import Entity.AdminEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import dao.AbstractDao;
@@ -12,6 +13,7 @@ import java.util.List;
 @Service
 @Transactional
 public class AdminServiceImp implements AbstractService <AdminEntity>  {
+    @Qualifier("adminDaoImpl")
     @Autowired
     private AbstractDao adminDao;
 
@@ -23,7 +25,7 @@ public class AdminServiceImp implements AbstractService <AdminEntity>  {
 
     @Override
     public AdminEntity get(int id) {
-        return adminDao.get(id);
+        return (AdminEntity) adminDao.get(id);
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 public interface AbstractService<T> {
     int save(T entity);
 
-    AdminEntity get(int id);
+    T get(int id);
 
     List<T> list();
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import Entity.AdminEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,8 @@ import service.AbstractService;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
-public class AdminController {
+public class AdminController  {
+    @Qualifier("adminServiceImp")
     @Autowired
     private AbstractService adminService;
 
@@ -27,7 +29,7 @@ public class AdminController {
     /*---Get a admin by id---*/
     @GetMapping("/admin/{id}")
     public ResponseEntity<AdminEntity> get(@PathVariable("id") int id) {
-        AdminEntity admin = adminService.get(id);
+        AdminEntity admin = (AdminEntity) adminService.get(id);
         return ResponseEntity.ok().body(admin);
     }
 
@@ -45,7 +47,6 @@ public class AdminController {
         return ResponseEntity.ok().body("admin has been updated successfully.");
     }
 
-    /*---Delete a admin by id---*/
     @DeleteMapping("/admin/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         adminService.delete(id);

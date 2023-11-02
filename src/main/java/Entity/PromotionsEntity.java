@@ -22,6 +22,9 @@ public class PromotionsEntity {
     @Basic
     @Column(name = "idproduct")
     private Integer idproduct;
+    @Basic
+    @Column(name = "idcategory")
+    private Integer idcategory;
 
     public String getStatus() {
         return status;
@@ -74,5 +77,13 @@ public class PromotionsEntity {
     @Override
     public int hashCode() {
         return Objects.hash(status, pourcentage, comment, id, idproduct);
+    }
+
+    public Integer getIdcategory() {
+        return idcategory;
+    }
+
+    public void setIdcategory(Integer idcategory) {
+        this.idcategory = idcategory;
     }
 }

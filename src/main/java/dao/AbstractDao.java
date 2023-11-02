@@ -10,7 +10,7 @@ public interface AbstractDao <T> {
 
     int save(T entity);
 
-    AdminEntity get(int id);
+    T get(int id);
 
     List<T> list();
 
