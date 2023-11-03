@@ -26,10 +26,12 @@ public class AdminController  {
         return ResponseEntity.ok().body("New admin has been saved with ID:" + id);
     }
 
-    /*---Get a admin by id---*/
     @GetMapping("/admin/{id}")
     public ResponseEntity<AdminEntity> get(@PathVariable("id") int id) {
         AdminEntity admin = (AdminEntity) adminService.get(id);
+        if (admin == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok().body(admin);
     }
 

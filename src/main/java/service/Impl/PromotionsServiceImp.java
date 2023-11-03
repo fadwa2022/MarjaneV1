@@ -51,7 +51,7 @@ public class PromotionsServiceImp implements AbstractService<PromotionsEntity>, 
 
                 return existingPromotion.getId();
             } else {
-                return promotionDao.save(promotion);
+                    return promotionDao.save(promotion);
             }
 
         }
