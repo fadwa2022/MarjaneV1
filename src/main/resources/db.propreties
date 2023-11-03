@@ -2,7 +2,7 @@
 	jdbc.driver=org.postgresql.Driver
 	jdbc.url=jdbc:postgresql://localhost:5432/mrjn
 	jdbc.user=postgres
-	jdbc.password=Fadwa1234
+	jdbc.password=0000
 	
 	# Hibernate properties
 	hibernate.show_sql=true
