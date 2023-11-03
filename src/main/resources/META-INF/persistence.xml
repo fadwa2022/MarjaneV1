@@ -8,6 +8,7 @@
         <class>Entity.AdminEntity</class>
         <class>Entity.CategoriesEntity</class>
         <class>Entity.ProduitsEntity</class>
+        <class>Entity.HistoryEntity</class>
         <class>Entity.PromotionsEntity</class>
         <class>Entity.ResponsableEntity</class>
         <class>Entity.StockEntity</class>
